@@ -16,20 +16,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package wicket.examples.springframework;
+package wicket.examples.panels.signin;
 
-import wicket.contrib.utils.spring.SpringApplication;
+import wicket.PageParameters;
+import wicket.markup.html.WebPage;
 
 /**
- * @author Juergen Donnerstag
+ * Just a totally do nothing page; has to be here to have any page at all
+ * for the CookieTest.
  */
-public class SpringExampleApplication extends SpringApplication
+public class MockPage extends WebPage
 {
-    /**
-     * @see wicket.contrib.utils.spring.SpringApplication#initSettings()
-     */
-    public void initSettings()
-    {
-        getPages().setHomePage(Home.class);
-    }
+
+	/**
+	 * Construct.
+	 * @param parameters
+	 */
+	public MockPage(final PageParameters parameters)
+	{
+	}
 }
