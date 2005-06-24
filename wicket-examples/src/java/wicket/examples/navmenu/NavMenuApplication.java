@@ -16,13 +16,14 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package navmenu;
+package wicket.examples.navmenu;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 
 import wicket.ApplicationSettings;
+import wicket.extensions.markup.html.navmenu.MenuItem;
 import wicket.protocol.http.WebApplication;
 
 /**
@@ -30,17 +31,16 @@ import wicket.protocol.http.WebApplication;
  *
  * @author Eelco Hillenius
  */
-public class MenuApplication extends WebApplication
+public class NavMenuApplication extends WebApplication
 {
     /**
      * Constructor.
      */
-    public MenuApplication()
+    public NavMenuApplication()
     {
         getPages().setHomePage(Home.class);
 		ApplicationSettings settings = getSettings();
-		settings.configure("development", "src/eelco/java");
-		settings.setStripWicketTags(true);
+		settings.configure("development");
     }
 
     /**
@@ -59,21 +59,21 @@ public class MenuApplication extends WebApplication
 		root.add(a1);
 		DefaultMutableTreeNode a2 = new DefaultMutableTreeNode(
 				new MenuItem("Templates", Page2.class, null));
-//		DefaultMutableTreeNode a2a = new DefaultMutableTreeNode(
-//				new MenuItem("Ognl", Page2a.class, null));
-//		a2.add(a2a);
-//		DefaultMutableTreeNode a2b = new DefaultMutableTreeNode(
-//				new MenuItem("Velocity", Page2b.class, null));
-//		a2.add(a2b);
+		DefaultMutableTreeNode a2a = new DefaultMutableTreeNode(
+				new MenuItem("Ognl", Page2a.class, null));
+		a2.add(a2a);
+		DefaultMutableTreeNode a2b = new DefaultMutableTreeNode(
+				new MenuItem("Velocity", Page2b.class, null));
+		a2.add(a2b);
 		root.add(a2);
 		DefaultMutableTreeNode a3 = new DefaultMutableTreeNode(
 				new MenuItem("Users", Page3.class, null));
-//		DefaultMutableTreeNode a3a = new DefaultMutableTreeNode(
-//				new MenuItem("Truus", Page2a.class, null));
-//		a3.add(a3a);
-//		DefaultMutableTreeNode a3b = new DefaultMutableTreeNode(
-//				new MenuItem("Mien", Page2b.class, null));
-//		a3.add(a3b);
+		DefaultMutableTreeNode a3a = new DefaultMutableTreeNode(
+				new MenuItem("Truus", Page3a.class, null));
+		a3.add(a3a);
+		DefaultMutableTreeNode a3b = new DefaultMutableTreeNode(
+				new MenuItem("Mien", Page3b.class, null));
+		a3.add(a3b);
 		root.add(a3);
 		DefaultMutableTreeNode a4 = new DefaultMutableTreeNode(
 				new MenuItem("Preferences", Page4.class, null));

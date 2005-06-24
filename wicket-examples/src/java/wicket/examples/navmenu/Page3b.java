@@ -16,20 +16,20 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package navmenu;
+package wicket.examples.navmenu;
 
 import wicket.PageParameters;
 
 /**
  * @author Eelco Hillenius
  */
-public class Page4 extends PageWithMenu
+public class Page3b extends PageWithMenu
 {
 	/**
 	 * Constructor.
 	 * @param parameters Page parameters
 	 */
-	public Page4(final PageParameters parameters)
+	public Page3b(final PageParameters parameters)
 	{
 		super();
 	}

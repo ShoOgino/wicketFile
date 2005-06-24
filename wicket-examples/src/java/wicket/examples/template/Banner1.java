@@ -16,21 +16,33 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package navmenu;
+package wicket.examples.template;
 
-import wicket.PageParameters;
+import wicket.model.IModel;
 
 /**
+ * A banner.
+ *
  * @author Eelco Hillenius
  */
-public class Home extends PageWithMenu
+public class Banner1 extends Banner
 {
 	/**
-	 * Constructor.
-	 * @param parameters Page parameters
+	 * Construct.
+	 * @param id
 	 */
-	public Home(final PageParameters parameters)
+	public Banner1(String id)
 	{
-		super();
+		super(id);
+	}
+
+	/**
+	 * Construct.
+	 * @param id
+	 * @param model
+	 */
+	public Banner1(String id, IModel model)
+	{
+		super(id, model);
 	}
 }

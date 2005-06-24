@@ -16,7 +16,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package navmenu;
+package wicket.examples.navmenu;
 
 import wicket.Component;
 import wicket.MarkupContainer;
@@ -39,7 +39,7 @@ public abstract class PageWithMenu extends WebPage
 	public PageWithMenu()
 	{
 		super();
-		this.border = new MenuBorder("menuBorder");
+		this.border = new MenuBorder("menuBorder", getClass());
 		super.add(border);
 	}
 

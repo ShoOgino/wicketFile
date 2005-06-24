@@ -16,21 +16,24 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package navmenu;
+package wicket.examples.template;
 
-import wicket.PageParameters;
 
 /**
+ * Our base page that serves as a template for pages that inherit from it. Doesn't have
+ * to be abstract, but was made abstract here to stress the fact that this page is not
+ * meant for direct use.
+ * 
  * @author Eelco Hillenius
  */
-public class Page2 extends PageWithMenu
+public class Page2 extends TemplatePage
 {
-	/**
-	 * Constructor.
-	 * @param parameters Page parameters
-	 */
-	public Page2(final PageParameters parameters)
-	{
-		super();
-	}
+    /**
+     * Constructor
+     */
+    public Page2()
+    {
+    	super();
+    	setPageTitle("Template example, page 2");
+    }
 }

@@ -16,16 +16,19 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package navmenu;
+package wicket.extensions.markup.html.navmenu;
+
+import java.io.Serializable;
 
 import wicket.PageParameters;
+import wicket.RequestCycle;
 
 /**
  * Represents an entry in a page navigation menu.
  *
  * @author Eelco Hillenius
  */
-public final class MenuItem
+public final class MenuItem implements Serializable
 {
 	/** label of the menu item. */
 	private String label;
@@ -56,6 +59,16 @@ public final class MenuItem
 		this.label = label;
 		this.pageClass = pageClass;
 		this.pageParameters = pageParameters;
+	}
+
+	/**
+	 * Checks whether the given (current) request may use this item.
+	 * @param requestCycle the (current) request cycle
+	 * @return true if this item should be visible
+	 */
+	public boolean checkAccess(RequestCycle requestCycle)
+	{
+		return true;
 	}
 
 	/**
@@ -110,5 +123,13 @@ public final class MenuItem
 	public void setPageParameters(PageParameters pageParameters)
 	{
 		this.pageParameters = pageParameters;
+	}
+
+	/**
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString()
+	{
+		return "MenuItem{pageClass=" + getPageClass() + "}";
 	}
 }
