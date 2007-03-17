@@ -18,6 +18,7 @@ package wicket.spring.common.web;
 
 import wicket.spring.SpringWebApplication;
 import wicket.spring.common.ContactDao;
+import wicket.spring.injection.annot.SpringComponentInjector;
 
 /**
  * Application class for our examples
@@ -39,6 +40,13 @@ public class ExampleApplication extends SpringWebApplication {
 	 * with it, so BE CAREFUL when using this.
 	 */
 	private ContactDao contactDao;
+
+	@Override
+	protected void init() {
+		// THIS LINE IS IMPORTANT - IT INSTALLS THE COMPONENT INJECTOR THAT WILL
+		// INJECT NEWLY CREATED COMPONENTS WITH THEIR SPRING DEPENDENCIES
+		addComponentInstantiationListener(new SpringComponentInjector(this));
+	}
 
 	/**
 	 * Retrieves contact dao bean. This bean should not be serialized so BE
