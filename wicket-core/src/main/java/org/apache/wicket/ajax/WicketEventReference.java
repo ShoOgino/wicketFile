@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.wicket.markup.html;
+package org.apache.wicket.ajax;
 
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
@@ -24,7 +24,6 @@ import org.apache.wicket.request.resource.ResourceReference;
  * 
  * @author ivaynberg
  */
-@Deprecated
 public class WicketEventReference extends JavaScriptResourceReference
 {
 	private static final long serialVersionUID = 1L;
@@ -36,7 +35,7 @@ public class WicketEventReference extends JavaScriptResourceReference
 
 	private WicketEventReference()
 	{
-		super(WicketEventReference.class, "wicket-event.js");
+		super(WicketEventReference.class, "res/js/wicket-event-jquery.js");
 	}
 
 
