@@ -17,34 +17,23 @@
 package org.apache.wicket.settings;
 
 import org.apache.wicket.request.resource.ResourceReference;
+import org.apache.wicket.resource.JQueryResourceReference;
 
 
 /**
- * Interface for Ajax related settings.
+ * Interface for settings related to the JavaScript libraries that come with and are used by Wicket.
  * <p>
- * With these settings the user application can replace the JavaScript libraries used for Wicket
- * Ajax functionality. By default Wicket uses JQuery as a backing library but with
- * {@link #setBackingLibraryReference(ResourceReference)} the application can either replace with
- * Dojo, YUI, ... or just use a different version of JQuery. If the backing library is replaced with
- * another one then the user application will need to provide implementation of Wicket JavaScript
- * APIs implemented with the new backing library, i.e. will need to set different resource
- * references for wicket-event.js and wicket-ajax.js
+ * With these settings the user application can replace the JavaScript libraries used for Wicket's
+ * event and Ajax functionality. By default Wicket uses {@linkplain JQueryResourceReference JQuery}
+ * as a backing library but via this interface the application can replace the implementations of
+ * wicket-event.js, wicket-ajax.js and wicket-ajax-debug.js to use implementations on other
+ * libraries, such as YUI or DOJO. The resource reference implementations need to specify the
+ * {@linkplain ResourceReference#getDependencies() dependency} on the backing library, if needed.
  * 
  * @since 6.0
  */
-public interface IAjaxSettings
+public interface IJavaScriptLibrarySettings
 {
-	/**
-	 * @return the reference to the used backing library
-	 */
-	ResourceReference getBackingLibraryReference();
-
-	/**
-	 * @param reference
-	 *            a reference to the backing library
-	 */
-	void setBackingLibraryReference(ResourceReference reference);
-
 	/**
 	 * @return the reference to the implementation of wicket-event.js
 	 */

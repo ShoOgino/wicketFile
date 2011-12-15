@@ -14,17 +14,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.wicket.examples.resourcedecoration;
+package org.apache.wicket.resource.aggregator;
 
-import org.apache.wicket.resource.aggregation.ResourceReferenceCollection;
+import static org.apache.wicket.resource.header.JavaScriptHeaderItem.forReference;
+
+import java.util.Collections;
+
+import org.apache.wicket.request.resource.JavaScriptResourceReference;
+import org.apache.wicket.resource.header.HeaderItem;
 
 /**
- * @author jthomerson
+ * js resource with dep on A
  */
-public class HttpAggregatingResourceReferenceCollection extends ResourceReferenceCollection
+public class ResourceReferenceB extends JavaScriptResourceReference
 {
 	private static final long serialVersionUID = 1L;
 
-	// you could customize this collection class to have code specific to the collection, like
-	// creating or rendering URLs, etc..
+	/**
+	 * Construct.
+	 */
+	public ResourceReferenceB()
+	{
+		super(ResourceAggregatorTest.class, "b.js");
+	}
+
+	@Override
+	public Iterable<? extends HeaderItem> getDependencies()
+	{
+		return Collections.singletonList(forReference(new ResourceReferenceA()));
+	}
 }

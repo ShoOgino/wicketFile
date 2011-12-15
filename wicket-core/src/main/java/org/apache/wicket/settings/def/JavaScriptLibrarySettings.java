@@ -16,39 +16,22 @@
  */
 package org.apache.wicket.settings.def;
 
-import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
-import org.apache.wicket.request.resource.JavaScriptResourceReference;
+import org.apache.wicket.ajax.WicketAjaxDebugJQueryResourceReference;
+import org.apache.wicket.ajax.WicketAjaxJQueryResourceReference;
+import org.apache.wicket.ajax.WicketEventJQueryResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
-import org.apache.wicket.settings.IAjaxSettings;
+import org.apache.wicket.settings.IJavaScriptLibrarySettings;
 
 /**
  * @since 6.0
  */
-public class AjaxSettings implements IAjaxSettings
+public class JavaScriptLibrarySettings implements IJavaScriptLibrarySettings
 {
-	private ResourceReference backingLibraryReference = new JavaScriptResourceReference(
-		AbstractDefaultAjaxBehavior.class, "res/js/jquery/jquery.min.js");
+	private ResourceReference wicketEventReference = WicketEventJQueryResourceReference.get();
 
-	private ResourceReference wicketEventReference = new JavaScriptResourceReference(
-		AbstractDefaultAjaxBehavior.class, "res/js/wicket-event-jquery.js");
+	private ResourceReference wicketAjaxReference = WicketAjaxJQueryResourceReference.get();
 
-	private ResourceReference wicketAjaxReference = new JavaScriptResourceReference(
-		AbstractDefaultAjaxBehavior.class, "res/js/wicket-ajax-jquery.js");
-
-	private ResourceReference wicketAjaxDebugReference = new JavaScriptResourceReference(
-		AbstractDefaultAjaxBehavior.class, "res/js/wicket-ajax-jquery-debug.js");
-
-	@Override
-	public ResourceReference getBackingLibraryReference()
-	{
-		return backingLibraryReference;
-	}
-
-	@Override
-	public void setBackingLibraryReference(ResourceReference backingLibraryReference)
-	{
-		this.backingLibraryReference = backingLibraryReference;
-	}
+	private ResourceReference wicketAjaxDebugReference = WicketAjaxDebugJQueryResourceReference.get();
 
 	@Override
 	public ResourceReference getWicketEventReference()

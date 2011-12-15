@@ -14,37 +14,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.wicket.resource.aggregation;
+package org.apache.wicket.resource.aggregator;
 
-import java.util.Collection;
-import java.util.LinkedHashSet;
+import static org.apache.wicket.resource.header.JavaScriptHeaderItem.forReference;
+
+import java.util.Collections;
+
+import org.apache.wicket.request.resource.JavaScriptResourceReference;
+import org.apache.wicket.resource.header.HeaderItem;
 
 /**
- * Just a LinkedHashSet that stores a collection of resource references. You can create additional
- * methods that your header response might need.
- * 
- * @author Jeremy Thomerson
+ * js resource with circular dependency on circ1
  */
-public class ResourceReferenceCollection extends LinkedHashSet<ResourceReferenceAndStringData>
+public class ResourceReferenceCirc2 extends JavaScriptResourceReference
 {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Just chains to super constructor.
+	 * Construct.
 	 */
-	public ResourceReferenceCollection()
+	public ResourceReferenceCirc2()
 	{
-		super();
+		super(ResourceAggregatorTest.class, "circ2.js");
 	}
 
-	/**
-	 * Just chains to super constructor.
-	 * 
-	 * @param c
-	 */
-	public ResourceReferenceCollection(Collection<? extends ResourceReferenceAndStringData> c)
+	@Override
+	public Iterable<? extends HeaderItem> getDependencies()
 	{
-		super(c);
+		return Collections.singletonList(forReference(new ResourceReferenceCirc1()));
 	}
-
 }
