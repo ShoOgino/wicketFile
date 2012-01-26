@@ -14,41 +14,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.wicket.examples.ajax.builtin.tree;
+package org.apache.wicket.examples.tree;
 
-import org.apache.wicket.extensions.markup.html.tree.AbstractTree;
-import org.apache.wicket.extensions.markup.html.tree.BaseTree;
-import org.apache.wicket.extensions.markup.html.tree.LinkTree;
+import java.util.Set;
 
+import org.apache.wicket.Component;
+import org.apache.wicket.extensions.markup.html.repeater.tree.AbstractTree;
+import org.apache.wicket.extensions.markup.html.repeater.tree.NestedTree;
+import org.apache.wicket.model.IModel;
 
 /**
- * Page that shuws a simple tree (not a table).
- * 
- * @author Matej
- * 
+ * @author Sven Meier
  */
-@Deprecated
-public class SimpleTreePage extends BaseTreePage
+public class NestedTreePage extends TreePage
 {
+
 	private static final long serialVersionUID = 1L;
 
-	private final BaseTree tree;
+	private NestedTree<Foo> tree;
 
 	@Override
-	protected AbstractTree getTree()
+	protected AbstractTree<Foo> createTree(FooProvider provider, IModel<Set<Foo>> state)
 	{
+		tree = new NestedTree<Foo>("tree", provider, state)
+		{
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected Component newContentComponent(String id, IModel<Foo> model)
+			{
+				return NestedTreePage.this.newContentComponent(id, model);
+			}
+		};
 		return tree;
 	}
-
-	/**
-	 * Page constructor
-	 * 
-	 */
-	public SimpleTreePage()
-	{
-		tree = new LinkTree("tree", createTreeModel());
-		add(tree);
-		tree.getTreeState().collapseAll();
-	}
-
 }

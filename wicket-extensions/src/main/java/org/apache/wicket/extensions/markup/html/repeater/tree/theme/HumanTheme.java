@@ -14,41 +14,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.wicket.examples.ajax.builtin.tree;
+package org.apache.wicket.extensions.markup.html.repeater.tree.theme;
 
-import org.apache.wicket.extensions.markup.html.tree.AbstractTree;
-import org.apache.wicket.extensions.markup.html.tree.BaseTree;
-import org.apache.wicket.extensions.markup.html.tree.LinkTree;
-
+import org.apache.wicket.Component;
+import org.apache.wicket.behavior.Behavior;
+import org.apache.wicket.markup.ComponentTag;
+import org.apache.wicket.markup.head.CssHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.request.resource.PackageResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 
 /**
- * Page that shuws a simple tree (not a table).
- * 
- * @author Matej
- * 
+ * @author svenmeier
  */
-@Deprecated
-public class SimpleTreePage extends BaseTreePage
+public class HumanTheme extends Behavior
 {
 	private static final long serialVersionUID = 1L;
 
-	private final BaseTree tree;
+	private static final ResourceReference CSS = new PackageResourceReference(WindowsTheme.class,
+		"human/theme.css");
 
 	@Override
-	protected AbstractTree getTree()
+	public void onComponentTag(Component component, ComponentTag tag)
 	{
-		return tree;
+		tag.append("class", "tree-theme-human", " ");
 	}
 
-	/**
-	 * Page constructor
-	 * 
-	 */
-	public SimpleTreePage()
+	@Override
+	public void renderHead(Component component, IHeaderResponse response)
 	{
-		tree = new LinkTree("tree", createTreeModel());
-		add(tree);
-		tree.getTreeState().collapseAll();
+		response.render(CssHeaderItem.forReference(CSS));
 	}
-
 }

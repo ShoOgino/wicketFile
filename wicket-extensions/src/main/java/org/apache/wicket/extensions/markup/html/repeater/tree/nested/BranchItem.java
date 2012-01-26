@@ -14,41 +14,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.wicket.examples.ajax.builtin.tree;
+package org.apache.wicket.extensions.markup.html.repeater.tree.nested;
 
-import org.apache.wicket.extensions.markup.html.tree.AbstractTree;
-import org.apache.wicket.extensions.markup.html.tree.BaseTree;
-import org.apache.wicket.extensions.markup.html.tree.LinkTree;
-
+import org.apache.wicket.markup.ComponentTag;
+import org.apache.wicket.markup.repeater.Item;
+import org.apache.wicket.model.IModel;
 
 /**
- * Page that shuws a simple tree (not a table).
+ * A branch is a container for a single node and its children inside a {@link Subtree}.
  * 
- * @author Matej
+ * @see Subtree#newBranchItem(String, int, IModel)
  * 
+ * @author svenmeier
  */
-@Deprecated
-public class SimpleTreePage extends BaseTreePage
+public final class BranchItem<T> extends Item<T>
 {
+
 	private static final long serialVersionUID = 1L;
 
-	private final BaseTree tree;
+	public BranchItem(String id, int index, IModel<T> model)
+	{
+		super(id, index, model);
+
+		setOutputMarkupId(true);
+	}
 
 	@Override
-	protected AbstractTree getTree()
+	protected void onComponentTag(ComponentTag tag)
 	{
-		return tree;
+		super.onComponentTag(tag);
+
+		if (isLast())
+		{
+			tag.put("class", "tree-branch tree-branch-last");
+		}
+		else
+		{
+			tag.put("class", "tree-branch tree-branch-mid");
+		}
 	}
 
-	/**
-	 * Page constructor
-	 * 
-	 */
-	public SimpleTreePage()
+	private boolean isLast()
 	{
-		tree = new LinkTree("tree", createTreeModel());
-		add(tree);
-		tree.getTreeState().collapseAll();
+		return getIndex() == getParent().size() - 1;
 	}
-
 }

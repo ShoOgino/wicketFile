@@ -14,41 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.wicket.examples.ajax.builtin.tree;
+package org.apache.wicket.examples.tree.content;
 
-import org.apache.wicket.extensions.markup.html.tree.AbstractTree;
-import org.apache.wicket.extensions.markup.html.tree.BaseTree;
-import org.apache.wicket.extensions.markup.html.tree.LinkTree;
-
+import org.apache.wicket.Component;
+import org.apache.wicket.examples.tree.Foo;
+import org.apache.wicket.extensions.markup.html.repeater.tree.AbstractTree;
+import org.apache.wicket.model.IDetachable;
+import org.apache.wicket.model.IModel;
 
 /**
- * Page that shuws a simple tree (not a table).
+ * Tree content factory for the {@link ContentPage}.
  * 
- * @author Matej
+ * Note: This indirection is used for demonstration purposes only! Don't jump through similar hoops
+ * if you're just using one type of content for your application's trees.
  * 
+ * @author Sven Meier
  */
-@Deprecated
-public class SimpleTreePage extends BaseTreePage
+public abstract class Content implements IDetachable
 {
-	private static final long serialVersionUID = 1L;
-
-	private final BaseTree tree;
-
-	@Override
-	protected AbstractTree getTree()
-	{
-		return tree;
-	}
 
 	/**
-	 * Page constructor
-	 * 
+	 * Create new content.
 	 */
-	public SimpleTreePage()
-	{
-		tree = new LinkTree("tree", createTreeModel());
-		add(tree);
-		tree.getTreeState().collapseAll();
-	}
+	public abstract Component newContentComponent(String id, AbstractTree<Foo> tree,
+		IModel<Foo> model);
 
+	public void detach()
+	{
+	}
 }

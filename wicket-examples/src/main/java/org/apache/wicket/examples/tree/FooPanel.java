@@ -14,41 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.wicket.examples.ajax.builtin.tree;
+package org.apache.wicket.examples.tree;
 
-import org.apache.wicket.extensions.markup.html.tree.AbstractTree;
-import org.apache.wicket.extensions.markup.html.tree.BaseTree;
-import org.apache.wicket.extensions.markup.html.tree.LinkTree;
-
+import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.IModel;
 
 /**
- * Page that shuws a simple tree (not a table).
- * 
- * @author Matej
- * 
+ * @author Sven Meier
  */
-@Deprecated
-public class SimpleTreePage extends BaseTreePage
+public class FooPanel extends Panel
 {
 	private static final long serialVersionUID = 1L;
 
-	private final BaseTree tree;
-
-	@Override
-	protected AbstractTree getTree()
+	public FooPanel(String id, IModel<Foo> foo)
 	{
-		return tree;
-	}
+		super(id, new CompoundPropertyModel<Foo>(foo));
 
-	/**
-	 * Page constructor
-	 * 
-	 */
-	public SimpleTreePage()
-	{
-		tree = new LinkTree("tree", createTreeModel());
-		add(tree);
-		tree.getTreeState().collapseAll();
+		add(new TextField<String>("bar"));
+		add(new TextField<String>("baz"));
+		add(new CheckBox("quux"));
 	}
-
 }

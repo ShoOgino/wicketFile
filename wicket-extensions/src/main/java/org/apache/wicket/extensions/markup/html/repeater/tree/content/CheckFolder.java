@@ -14,41 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.wicket.examples.ajax.builtin.tree;
+package org.apache.wicket.extensions.markup.html.repeater.tree.content;
 
-import org.apache.wicket.extensions.markup.html.tree.AbstractTree;
-import org.apache.wicket.extensions.markup.html.tree.BaseTree;
-import org.apache.wicket.extensions.markup.html.tree.LinkTree;
-
+import org.apache.wicket.extensions.markup.html.repeater.tree.AbstractTree;
+import org.apache.wicket.markup.html.form.Check;
+import org.apache.wicket.markup.html.form.CheckGroup;
+import org.apache.wicket.model.IModel;
 
 /**
- * Page that shuws a simple tree (not a table).
+ * This class adds a {@link Check} to a {@link Folder}. Remeber to wrap your tree in a
+ * {@link CheckGroup} for all checks to work correctly.
  * 
- * @author Matej
- * 
+ * @author svenmeier
  */
-@Deprecated
-public class SimpleTreePage extends BaseTreePage
+public class CheckFolder<T> extends Folder<T>
 {
 	private static final long serialVersionUID = 1L;
 
-	private final BaseTree tree;
-
-	@Override
-	protected AbstractTree getTree()
+	public CheckFolder(String id, AbstractTree<T> tree, IModel<T> model)
 	{
-		return tree;
-	}
+		super(id, tree, model);
 
-	/**
-	 * Page constructor
-	 * 
-	 */
-	public SimpleTreePage()
-	{
-		tree = new LinkTree("tree", createTreeModel());
-		add(tree);
-		tree.getTreeState().collapseAll();
+		add(new Check<T>("check", model));
 	}
-
 }
