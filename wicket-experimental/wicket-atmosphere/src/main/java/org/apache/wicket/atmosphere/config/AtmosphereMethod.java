@@ -14,24 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.wicket.markup.html.border;
+package org.apache.wicket.atmosphere.config;
 
-/**
- * A very simple border component that draws a thin black line around its children.
- * 
- * @author Jonathan Locke
- * @deprecated WICKET-4966 remove in Wicket 7
- */
-@Deprecated
-public final class BoxBorder extends Border
-{
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see org.apache.wicket.Component#Component(String)
-	 */
-	public BoxBorder(final String id)
-	{
-		super(id);
-	}
+public enum AtmosphereMethod {
+	GET, PUT, POST, DELETE;
 }

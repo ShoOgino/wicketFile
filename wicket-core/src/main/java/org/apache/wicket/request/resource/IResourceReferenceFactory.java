@@ -14,24 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.wicket.markup.html.border;
+package org.apache.wicket.request.resource;
 
 /**
- * A very simple border component that draws a thin black line around its children.
- * 
- * @author Jonathan Locke
- * @deprecated WICKET-4966 remove in Wicket 7
+ * Used to create a ResourceReference for a given request attributes
  */
-@Deprecated
-public final class BoxBorder extends Border
+public interface IResourceReferenceFactory
 {
-	private static final long serialVersionUID = 1L;
-
 	/**
-	 * @see org.apache.wicket.Component#Component(String)
+	 * Creates a new instance of ResourceReference with the given
+	 * request attributes
+	 *
+	 * @param key
+	 *      The object that brings the request attributes
+	 * @return a ResourceReference or {@code null} if the factory cannot create
+	 *      such with the given request attributes
 	 */
-	public BoxBorder(final String id)
-	{
-		super(id);
-	}
+	ResourceReference create(ResourceReference.Key key);
 }
